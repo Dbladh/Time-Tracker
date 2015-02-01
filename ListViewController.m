@@ -10,7 +10,7 @@
 #import "ProjectController.h"
 #import "DetailViewController.h"
 
-@interface ListViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -22,7 +22,6 @@
     [super viewDidLoad];
     
     UITableView *tableView =[[UITableView alloc]initWithFrame:self.view.bounds];
-    
     
     self.tableView = tableView;
     [self.view addSubview:self.tableView];
@@ -38,6 +37,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"The Cell"];
     return cell;
 }
@@ -47,9 +47,10 @@
 }
 
 -(void)newProject: (id)sender{
-    Project *newProject = [Project new];
+    
+//    Project *newProject = [Project new]; // We can't instantiate objects like this anymore because of Core Data
     DetailViewController *detailViewController = [DetailViewController new];
-    detailViewController.project= newProject;
+//    detailViewController.project= newProject;
     
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
